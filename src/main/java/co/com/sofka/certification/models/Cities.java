@@ -1,61 +1,63 @@
 package co.com.sofka.certification.models;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public enum Cities {
-    BOGOTA(""),
-    MEDELLIN,
-    ENVIGADO,
-    ITAGUI,
-    SABANETA,
-    BELLO,
-    CALI,
-    BARRANQUILLA,
-    CARTAGENA,
-    BUCARAMANGA,
-    FLORIDABLANCA
+    BOGOTA("Bogotá"),
+    CHIA("Chía"),
+    MEDELLIN("Medellín"),
+    ENVIGADO("Envigado"),
+    ITAGUI("Itagüí"),
+    SABANETA("Chía"),
+    BELLO("Bello"),
+    CALI("Cali"),
+    BARRANQUILLA("Barranquilla"),
+    CARTAGENA("Cartagena"),
+    BUCARAMANGA("Bucaramanga"),
+    FLORIDABLANCA("Floridablanca"),
+    MANIZALES("Manizales"),
+    VILLAMARIA("Villamaría"),
+    PEREIRA("Pereira"),
+    IBAGUE("Ibagué"),
+    VILLAVICENCIO("Villavicencio"),
+    SANTA_MARTA("Santa Marta"),
+    NEIVA("Neiva"),
+    SINCELEJO("Sincelejo"),
+    MONTERIA("Montería"),
+    ARMENIA("Armenia"),
+    CUCUTA("Cúcuta"),
+    VALLEDUPAR("Valledupar"),
+    RIONEGRO("Rionegro"),
+    SOACHA("Soacha"),
+    PASTO("Pasto"),
+    BUGA("Buga"),
+    POPAYAN("Popayán"),
+    TUNJA("Tunja"),
+    CALDAS("Caldas"),
+    FUSAGASUGA("Fusagasugá"),
+    JAMUNDI("Jamundí"),
+    LA_ESTRELLA("La Estrella"),
+    TABIO("Cundinamarca"),
+    TULUA("Tuluá"),
+    TENJO("Tenjo"),
+    COTA("Cota");
+    private final String cityName;
 
-
-}
-/*
-public enum Countries {
-    INDIA("India"),
-    USA("USA"),
-    ICELAND("Iceland"),
-    GREENLAND("Greenland"),
-    SWITZERLAND("Switzerland"),
-    NORWAY("Norway"),
-    NEW_ZEALAND("New Zealand"),
-    GREECE("Greece"),
-    ITALY("Italy"),
-    IRELAND("Ireland"),
-    CHINA("China"),
-    JAPAN("Japan"),
-    FRANCE("France"),
-    RUSSIA("Russia"),
-    AUSTRALLIA("Australlia"),
-    CANADA("Canada");
-
-    private final String countryName;
-
-    Countries(String country)
-    {
-        countryName = country;
+    Cities(String city) {
+        cityName = city;
     }
 
-    public static List<String> asList()
-    {
+    public static List<String> asList() {
         return Arrays.stream(values()).map(Enum::name).collect(Collectors.toList());
     }
 
-    public static Boolean find(String lookingForCountry)
-    {
-        return asList().contains(lookingForCountry);
+    public static Boolean find(String lookingForCity) {
+        return asList().contains(lookingForCity);
     }
 
-    public String getCountryName()
-    {
-        return countryName;
+    public String getCityName() {
+        return cityName;
     }
-
 }
-
- */

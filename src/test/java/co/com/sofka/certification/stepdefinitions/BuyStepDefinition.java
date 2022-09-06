@@ -1,13 +1,28 @@
 package co.com.sofka.certification.stepdefinitions;
 
+import static co.com.sofka.certification.userinterfaces.InitialUI.BT_ALLOW_DETECT_LOCATION_WHILE_USING_APP;
+import static co.com.sofka.certification.userinterfaces.InitialUI.BT_CLOSE_IMAGE_PROPAGANDA;
+import static co.com.sofka.certification.userinterfaces.InitialUI.BT_PICK_AT_THE_SHOP;
+import static co.com.sofka.certification.userinterfaces.InitialUI.BT_SALES_MENU;
+import static co.com.sofka.certification.userinterfaces.InitialUI.BT_SEND_TO_HOME;
+import static co.com.sofka.certification.userinterfaces.InitialUI.BT_SKIP_TUTORIAL;
+import static co.com.sofka.certification.userinterfaces.InitialUI.BT_START_SESSION_LATER;
+import static co.com.sofka.certification.userinterfaces.InitialUI.SR_CHOOSE_CITY;
+import static co.com.sofka.certification.userinterfaces.InitialUI.TV_CHOOSE_CITY;
+
+import co.com.sofka.certification.models.Cities;
 import io.cucumber.java.Before;
 import io.cucumber.java.ParameterType;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+
 import net.serenitybdd.screenplay.Actor;
+import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
+
+import org.openqa.selenium.Keys;
 
 public class BuyStepDefinition {
     @ParameterType(".*")
@@ -20,24 +35,39 @@ public class BuyStepDefinition {
         OnStage.setTheStage(new OnlineCast());
     }
 
-    @Given("Juan makes log in into exito app")
-    public void juanMakesLogInIntoExitoApp() {
+    @Given("{actor} enters into the shopping section")
+    public void juanEntersIntoTheShoppingSection(Actor actor) {
+        String city = Cities.BELLO.getCityName();
+        actor.attemptsTo(
+                Click.on(BT_START_SESSION_LATER),
+                Click.on(BT_ALLOW_DETECT_LOCATION_WHILE_USING_APP),
+                Click.on(BT_SKIP_TUTORIAL),
+                Click.on(BT_CLOSE_IMAGE_PROPAGANDA),
+                Click.on(BT_SALES_MENU),
+                Click.on(BT_SEND_TO_HOME),
+                Click.on(BT_PICK_AT_THE_SHOP),
+                Click.on(SR_CHOOSE_CITY)
+                //Click.on(TV_CHOOSE_CITY.of(city))
+        );
+    }
+
+    @When("{actor} looks for a classic pen")
+    public void heLooksForAClassicPen(Actor actor) {
 
     }
-    @When("he looks for a classic pen")
-    public void heLooksForAClassicPen() {
+
+    @When("{actor} added it to the shopping cart")
+    public void heAddedItToTheShoppingCart(Actor actor) {
 
     }
-    @When("he added it to the shopping cart")
-    public void heAddedItToTheShoppingCart() {
+
+    @When("{actor} finishes the checkout process sending the item to his house")
+    public void heFinishesTheCheckoutProcessSendingTheItemToHisHouse(Actor actor) {
 
     }
-    @When("He finishes the chechout process sending the item to his house")
-    public void heFinishesTheChechoutProcessSendingTheItemToHisHouse() {
 
-    }
-    @Then("Juan must see the pen added on che checkout page")
-    public void juanMustSeeThePenAddedOnCheCheckoutPage() {
+    @Then("{actor} must see the pen added on che checkout page")
+    public void juanMustSeeThePenAddedOnCheCheckoutPage(Actor actor) {
 
     }
 }

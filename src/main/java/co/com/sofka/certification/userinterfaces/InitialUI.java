@@ -13,15 +13,6 @@ public class InitialUI {
     public static Target BT_SEND_TO_HOME = Target.the("Button to send the sale to home").located(By.id("constraitLayout_user_address"));
     public static Target BT_PICK_AT_THE_SHOP = Target.the("Button to pick the sale at the requested shop").located(By.id("constraitLayout_buy_and_collect"));
     public static Target SR_CHOOSE_CITY = Target.the("Spinner list to select the buyer's city").located(By.id("constraitLayout_buy_and_collect"));
-    public static Target TV_CHOOSE_CITY = Target.the("List item containing the buyer's city").located(By.id("//android.widget.TextView[contains(@text,{0})]"));
-
-
-
-
-
-
-
-
-
-
+    public static Target TV_CHOOSE_CITY = Target.the("List item containing the buyer's city").locatedBy("//android.widget.TextView[contains(@text,{0})]");
+    public static Target ET_INSERT_ADDRESS = Target.the("EditText to insert buyer's address").located(By.id("//android.widget.EditText"));
 }
