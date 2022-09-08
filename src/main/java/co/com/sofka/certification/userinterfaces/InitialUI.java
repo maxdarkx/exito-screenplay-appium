@@ -3,7 +3,6 @@ package co.com.sofka.certification.userinterfaces;
 import net.serenitybdd.screenplay.targets.Target;
 
 import org.openqa.selenium.By;
-import io.appium.java_client.android.connection.
 
 public class InitialUI {
     public static Target BT_START_SESSION_LATER = Target.the("Button to start session later").located(By.id("textView_loginlater"));

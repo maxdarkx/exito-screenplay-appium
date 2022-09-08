@@ -1,7 +1,9 @@
 package co.com.sofka.certification.runners;
 
+import io.appium.java_client.AppiumDriver;
 import net.thucydides.core.webdriver.DriverSource;
 
+import org.openqa.selenium.ScriptKey;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -33,13 +35,14 @@ public class MobileAndroidDriver implements DriverSource {
         //capabilities.setCapability("enableMultiWindows", true);
 
 
-        try {
-            driver = new RemoteWebDriver(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-            driver = new RemoteWebDriver(null);
-        }
-        return driver;
+         try {
+             driver = new AppiumDriver (new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
+         } catch (MalformedURLException e) {
+             throw new RuntimeException(e);
+         }
+
+         driver.getPinnedScripts();
+         return driver;
     }
 
     public boolean takesScreenshots() {

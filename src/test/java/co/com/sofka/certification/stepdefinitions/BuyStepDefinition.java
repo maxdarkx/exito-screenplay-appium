@@ -11,6 +11,7 @@ import static co.com.sofka.certification.userinterfaces.InitialUI.BT_START_SESSI
 import static co.com.sofka.certification.userinterfaces.InitialUI.TV_CHOOSE_CITY;
 
 import co.com.sofka.certification.models.Cities;
+import io.appium.java_client.AppiumDriver;
 import io.cucumber.java.Before;
 import io.cucumber.java.ParameterType;
 import io.cucumber.java.en.Given;
@@ -39,6 +40,8 @@ public class BuyStepDefinition {
 
     @Given("{actor} enters into the shopping section")
     public void juanEntersIntoTheShoppingSection(Actor actor) throws InterruptedException {
+        AppiumDriver driver = (AppiumDriver) Serenity.getDriver();
+        driver.setSetting("enableMultiWindow",true);
         //Thread.sleep(30000);
         actor.attemptsTo(
                 Click.on(BT_START_SESSION_LATER),
