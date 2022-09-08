@@ -3,18 +3,18 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath "net.serenity-bdd:serenity-gradle-plugin:3.2.5"
+        classpath "net.serenity-bdd:serenity-gradle-plugin:3.3.2"
     }
 }
 
 plugins {
     id 'java'
     id 'idea'
-    id "net.serenity-bdd.serenity-gradle-plugin" version '3.2.5'
+    id "net.serenity-bdd.serenity-gradle-plugin" version '3.3.2'
 }
 
 ext {
-    serenityVersion = '3.2.5'
+    serenityVersion = '3.3.2'
     slf4jVersion = '1.7.36'
     junitVersion = '5.8.2'
 }

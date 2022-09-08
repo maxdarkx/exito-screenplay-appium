@@ -3,6 +3,7 @@ package co.com.sofka.certification.userinterfaces;
 import net.serenitybdd.screenplay.targets.Target;
 
 import org.openqa.selenium.By;
+import io.appium.java_client.android.connection.
 
 public class InitialUI {
     public static Target BT_START_SESSION_LATER = Target.the("Button to start session later").located(By.id("textView_loginlater"));
@@ -12,7 +13,9 @@ public class InitialUI {
     public static Target BT_SALES_MENU = Target.the("Button to show the sales menu").located(By.id("third_item"));
     public static Target BT_SEND_TO_HOME = Target.the("Button to send the sale to home").located(By.id("constraitLayout_user_address"));
     public static Target BT_PICK_AT_THE_SHOP = Target.the("Button to pick the sale at the requested shop").located(By.id("constraitLayout_buy_and_collect"));
-    public static Target SR_CHOOSE_CITY = Target.the("Spinner list to select the buyer's city").located(By.id("constraitLayout_buy_and_collect"));
-    public static Target TV_CHOOSE_CITY = Target.the("List item containing the buyer's city").locatedBy("//android.widget.TextView[contains(@text,{0})]");
-    public static Target ET_INSERT_ADDRESS = Target.the("EditText to insert buyer's address").located(By.id("//android.widget.EditText"));
+
+    public static Target BT_CHOOSE_CITY = Target.the("Button to select a city from the listView").located(By.id("text_input_end_icon"));
+    public static Target TV_CHOOSE_CITY = Target.the("List item containing the buyer's city").locatedBy("//android.widget.TextView[contains(@text,'{0}')]");
+
+
 }
