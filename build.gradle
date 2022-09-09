@@ -37,6 +37,7 @@ dependencies {
     implementation group: 'net.serenity-bdd', name: 'serenity-ensure', version: serenityVersion
 
     testImplementation group: 'org.slf4j', name: 'slf4j-simple', version: slf4jVersion
+
 }
 
 compileJava.options.encoding = "UTF-8"
