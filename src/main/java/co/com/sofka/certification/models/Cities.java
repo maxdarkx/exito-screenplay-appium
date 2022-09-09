@@ -49,14 +49,6 @@ public enum Cities {
         cityName = city;
     }
 
-    public static List<String> asList() {
-        return Arrays.stream(values()).map(Enum::name).collect(Collectors.toList());
-    }
-
-    public static Boolean find(String lookingForCity) {
-        return asList().contains(lookingForCity);
-    }
-
     public String getCityName() {
         return cityName;
     }

@@ -1,6 +1,6 @@
 package co.com.sofka.certification.tasks;
 
-import static co.com.sofka.certification.userinterfaces.InitialUI.TV_CHOOSE_CITY;
+import static co.com.sofka.certification.userinterfaces.SendToUI.TV_CHOOSE_CITY;
 
 import com.google.common.collect.ImmutableMap;
 
@@ -12,8 +12,6 @@ import net.serenitybdd.screenplay.actions.DriverTask;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.remote.RemoteWebElement;
 
 public class ScrollTask implements Task {
     private Target fromTarget;
