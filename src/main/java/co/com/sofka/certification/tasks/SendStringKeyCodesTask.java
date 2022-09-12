@@ -43,7 +43,7 @@ public class SendStringKeyCodesTask implements Task {
         return new DriverTask(
                 webDriver ->
                 {
-                    AndroidDriver mobileDriver =(AndroidDriver) ((AppiumDriver) ((WebDriverFacade) webDriver).getProxiedDriver());
+                    AndroidDriver mobileDriver = (AndroidDriver) ((AppiumDriver) ((WebDriverFacade) webDriver).getProxiedDriver());
                     codesToSend.forEach(
                             code -> mobileDriver.pressKey(new KeyEvent(code))
                     );
@@ -56,7 +56,7 @@ public class SendStringKeyCodesTask implements Task {
         String androidValue;
         for (char value : codes.toCharArray()) {
             androidValue = String.valueOf(value).toUpperCase(Locale.ROOT);
-            switch(androidValue) {
+            switch (androidValue) {
                 case (" "):
                     codeList.add(AndroidKey.SPACE);
                     break;
@@ -90,9 +90,38 @@ public class SendStringKeyCodesTask implements Task {
                 case ("9"):
                     codeList.add(AndroidKey.DIGIT_9);
                     break;
+                case ("*"):
+                    codeList.add(AndroidKey.STAR);
+                    break;
+                case ("#"):
+                    codeList.add(AndroidKey.POUND);
+                    break;
+                case (","):
+                    codeList.add(AndroidKey.COMMA);
+                    break;
+                case ("."):
+                    codeList.add(AndroidKey.PERIOD);
+                    break;
+                case ("-"):
+                    codeList.add(AndroidKey.MINUS);
+                    break;
+                case ("="):
+                    codeList.add(AndroidKey.EQUALS);
+                    break;
+                case ("+"):
+                    codeList.add(AndroidKey.PLUS);
+                    break;
+                case ("/"):
+                    codeList.add(AndroidKey.SLASH);
+                    break;
+                case ("\\"):
+                    codeList.add(AndroidKey.BACKSLASH);
+                    break;
+                case ("@"):
+                    codeList.add(AndroidKey.AT);
+                    break;
                 default:
                     codeList.add(AndroidKey.valueOf(androidValue));
-
             }
         }
         codeList.add(AndroidKey.ENTER);
