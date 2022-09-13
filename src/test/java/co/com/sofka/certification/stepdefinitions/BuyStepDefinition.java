@@ -97,7 +97,7 @@ public class BuyStepDefinition {
         LOGGER.info("Subtotal: "+subTotalNumber+" , listPrice: "+listPriceNumber);
 
         actor.attemptsTo(
-                //Ensure.that(TV_TOTAL_PRICE.inside(GV_TOTAL)).isDisplayed(),
+                Ensure.that(TV_TOTAL_PRICE.inside(GV_TOTAL)).isDisplayed(),
                 Ensure.that(subTotalNumber).isLessThanOrEqualTo(listPriceNumber)
         );
     }

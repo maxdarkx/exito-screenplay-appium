@@ -39,5 +39,5 @@ public class CheckOutUI {
     public static Target TV_SHIPPING_COST = Target.the("TextView to show shipping cost")
             .located(By.xpath("//android.view.View[3]/android.view.View[2]"));
     public static Target TV_TOTAL_PRICE = Target.the("TextView to show total price")
-            .located(By.xpath("//android.view.View[4]/android.view.View[2]"));
+            .located(By.xpath("//android.view.View[contains(@text, 'Total')]//following-sibling::android.view.View"));
 }

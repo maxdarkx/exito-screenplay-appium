@@ -4,6 +4,7 @@ import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisi
 import static co.com.sofka.certification.Interactions.HideKeyboardInteraction.hideKeyboard;
 import static co.com.sofka.certification.tasks.EnterUserDataTask.enter;
 import static co.com.sofka.certification.tasks.ScrollFromAreaTask.scrollFromArea;
+import static co.com.sofka.certification.tasks.ScrollToCheckTotalPriceTask.scrollToCheckTotalPrice;
 import static co.com.sofka.certification.tasks.ScrollToElementTask.scrollToElement;
 import static co.com.sofka.certification.userinterfaces.CheckOutUI.BT_CONTINUE_TO_INSERT_USER_DATA;
 import static co.com.sofka.certification.userinterfaces.CheckOutUI.BT_DO_CHECKOUT;
@@ -30,14 +31,15 @@ public class DoCheckoutTask implements Task {
 
     @Override
     public <T extends Actor> void performAs(T actor) {
-        String evidenceData = actor.recall("itemPrice");
-        Serenity.recordReportData().withTitle("item Price").andContents(evidenceData);
-        String receiverName = userData.get("firstName") + " " + userData.get("lastName");
         Map<String, Integer> scrollArea = new HashMap<>();
         scrollArea.put("left", 500);
         scrollArea.put("top", 200);
         scrollArea.put("width", 100);
         scrollArea.put("height", 1600);
+
+        String evidenceData = actor.recall("itemPrice");
+        Serenity.recordReportData().withTitle("item Price").andContents(evidenceData);
+        String receiverName = userData.get("firstName").concat(" " + userData.get("lastName"));
 
         actor.attemptsTo(
                 Click.on(BT_DO_CHECKOUT),
@@ -55,21 +57,8 @@ public class DoCheckoutTask implements Task {
                         .andPercent(0.5),
                 Enter.theValue(receiverName).into(ET_SHIPPING_RECEIPT),
                 hideKeyboard(),
-                Click.on(BT_GO_TO_PAYMENT)
-        );
-
-        actor.attemptsTo(
-                WaitUntil.the(ET_CLIENT_EMAIL, isVisible()).forNoMoreThan(Duration.ofSeconds(30)),
-                scrollFromArea()
-                        .withScrollArea(scrollArea)
-                        .inDirection("down")
-                        .andSpeed(10000.0)
-                        .andPercent(1.0),
-                scrollFromArea()
-                        .withScrollArea(scrollArea)
-                        .inDirection("down")
-                        .andSpeed(10000.0)
-                        .andPercent(1.0)
+                Click.on(BT_GO_TO_PAYMENT),
+                scrollToCheckTotalPrice().withScrollArea(scrollArea)
         );
     }
 
