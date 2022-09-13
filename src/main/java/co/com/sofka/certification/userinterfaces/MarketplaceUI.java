@@ -14,7 +14,7 @@ public class MarketplaceUI {
     public static Target BT_ADD_ITEM_TO_CART = Target.the("Button to add the item to the cart")
             .locatedBy("//android.view.ViewGroup/android.widget.TextView[contains(@text,'Agregar')]");
     public static Target TV_ITEM_PRICE = Target.the("TextView to show the item's price")
-            .locatedBy("//android.widget.TextView[contains(@resource-id, 'appCompatTextView_price')]");
+            .locatedBy("//android.widget.TextView[contains(@resource-id, 'appCompatTextView_list_price')]");
     public static Target BT_VIEW_CART = Target.the("Button to show the shopping cart")
             .located(By.id("com.exito.appcompania:id/appCompatImageView_shopping_cart"));
 

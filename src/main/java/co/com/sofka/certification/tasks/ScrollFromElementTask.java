@@ -15,9 +15,9 @@ import org.openqa.selenium.remote.RemoteWebElement;
 
 public class ScrollFromElementTask implements Task {
     private Target fromTarget;
-    private String percent;
+    private Double percent;
     private String direction;
-    private String speed;
+    private Double speed;
 
     @Override
     public <T extends Actor> void performAs(T actor) {
@@ -47,13 +47,12 @@ public class ScrollFromElementTask implements Task {
     }
 
 
-    public ScrollFromElementTask fromElement(String target) {
-        //perform scroll with data: element to scroll from
-        this.fromTarget = TV_CHOOSE_CITY.of(target);
+    public ScrollFromElementTask fromElement(Target target) {
+        this.fromTarget = target;
         return this;
     }
 
-    public ScrollFromElementTask andPercent(String percent) {
+    public ScrollFromElementTask andPercent(Double percent) {
         this.percent = percent;
         return this;
     }
@@ -63,7 +62,7 @@ public class ScrollFromElementTask implements Task {
         return this;
     }
 
-    public ScrollFromElementTask andSpeed(String speed) {
+    public ScrollFromElementTask andSpeed(Double speed) {
         this.speed = speed;
         return this;
     }

@@ -7,10 +7,18 @@ import static co.com.sofka.certification.tasks.EnterAdressTask.enterAdress;
 import static co.com.sofka.certification.Interactions.EnterShoppingCartInteraction.enterShoppingCart;
 import static co.com.sofka.certification.tasks.InitialStepsTask.doInitialSteps;
 import static co.com.sofka.certification.tasks.LookForItemTask.lookFor;
+import static co.com.sofka.certification.userinterfaces.CheckOutUI.GV_TOTAL;
+import static co.com.sofka.certification.userinterfaces.CheckOutUI.TV_SAVINGS;
+import static co.com.sofka.certification.userinterfaces.CheckOutUI.TV_SUBTOTAL;
+import static co.com.sofka.certification.userinterfaces.CheckOutUI.TV_TOTAL_PRICE;
 
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
+import net.serenitybdd.screenplay.ensure.Ensure;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.Map;
@@ -23,6 +31,9 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class BuyStepDefinition {
+    private Logger LOGGER = LoggerFactory.getLogger(BuyStepDefinition.class);
+
+
     @ParameterType(".*")
     public Actor actor(String actorName) {
         return OnStage.theActorCalled(actorName);
@@ -67,10 +78,27 @@ public class BuyStepDefinition {
         );
     }
 
-    @Then("{actor} must see the pen added on checkout page")
-    public void juanMustSeeThePenAddedOnCheckoutPage(Actor actor) {
-        System.out.println("Hola");
+    @Then("{actor} must see the item added on checkout page")
+    public void juanMustSeeTheItemAddedOnCheckoutPage(Actor actor)
+    {
+        String subTotal = TV_SUBTOTAL.inside(GV_TOTAL).resolveFor(actor).getText()
+                .replace(",", "")
+                .replace(".", "")
+                .replace(" ", "")
+                .replace("$", "");
+
+        String listPrice =((String) actor.recall("itemPrice"))
+                .replace(",", "")
+                .replace(".", "")
+                .replace(" ", "")
+                .replace("$", "");
+        Double subTotalNumber = Double.parseDouble(subTotal);
+        Double listPriceNumber = Double.parseDouble(listPrice);
+        LOGGER.info("Subtotal: "+subTotalNumber+" , listPrice: "+listPriceNumber);
+
+        actor.attemptsTo(
+                //Ensure.that(TV_TOTAL_PRICE.inside(GV_TOTAL)).isDisplayed(),
+                Ensure.that(subTotalNumber).isLessThanOrEqualTo(listPriceNumber)
+        );
     }
-
-
 }

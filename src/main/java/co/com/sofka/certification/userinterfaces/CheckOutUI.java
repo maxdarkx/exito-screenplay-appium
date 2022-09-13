@@ -25,12 +25,19 @@ public class CheckOutUI {
             .located(By.xpath("//android.widget.EditText[@resource-id = 'ship-receiverName']"));
     public static Target BT_GO_TO_PAYMENT = Target.the("Button to set payment data")
             .located(By.xpath("//android.widget.Button[@resource-id = 'btn-go-to-payment']"));
+    public static Target ET_CLIENT_EMAIL = Target.the("EditText with the client's email")
+            .located(By.xpath("//android.widget.EditText[@resource-id = 'client-email']"));
+
+
+
     public static Target GV_TOTAL = Target.the("GridView containing shipping cost and total sale")
             .located(By.xpath("//android.widget.GridView"));
     public static Target TV_SUBTOTAL = Target.the("TextView to show sale subtotal")
             .located(By.xpath("//android.view.View[1]/android.view.View[2]"));
-    public static Target TV_SHIPPING_COST = Target.the("TextView to show shipping cost")
+    public static Target TV_SAVINGS = Target.the("TextView to show sale savings")
             .located(By.xpath("//android.view.View[2]/android.view.View[2]"));
-    public static Target TV_TOTAL_PRICE = Target.the("TextView to show total price")
+    public static Target TV_SHIPPING_COST = Target.the("TextView to show shipping cost")
             .located(By.xpath("//android.view.View[3]/android.view.View[2]"));
+    public static Target TV_TOTAL_PRICE = Target.the("TextView to show total price")
+            .located(By.xpath("//android.view.View[4]/android.view.View[2]"));
 }

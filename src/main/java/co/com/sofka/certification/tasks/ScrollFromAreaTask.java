@@ -13,9 +13,9 @@ import java.util.Map;
 
 public class ScrollFromAreaTask implements Task {
     private Map<String, Integer> scrollArea;
-    private Float percent;
+    private Double percent;
     private String direction;
-    private Float speed;
+    private Double speed;
 
     @Override
     public <T extends Actor> void performAs(T actor) {
@@ -55,7 +55,7 @@ public class ScrollFromAreaTask implements Task {
         return this;
     }
 
-    public ScrollFromAreaTask andPercent(Float percent) {
+    public ScrollFromAreaTask andPercent(Double percent) {
         this.percent = percent;
         return this;
     }
@@ -65,7 +65,7 @@ public class ScrollFromAreaTask implements Task {
         return this;
     }
 
-    public ScrollFromAreaTask andSpeed(Float speed) {
+    public ScrollFromAreaTask andSpeed(Double speed) {
         this.speed = speed;
         return this;
     }

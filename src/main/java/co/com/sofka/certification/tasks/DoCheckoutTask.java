@@ -2,19 +2,16 @@ package co.com.sofka.certification.tasks;
 
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 import static co.com.sofka.certification.Interactions.HideKeyboardInteraction.hideKeyboard;
+import static co.com.sofka.certification.tasks.EnterUserDataTask.enter;
+import static co.com.sofka.certification.tasks.ScrollFromAreaTask.scrollFromArea;
 import static co.com.sofka.certification.tasks.ScrollToElementTask.scrollToElement;
 import static co.com.sofka.certification.userinterfaces.CheckOutUI.BT_CONTINUE_TO_INSERT_USER_DATA;
 import static co.com.sofka.certification.userinterfaces.CheckOutUI.BT_DO_CHECKOUT;
 import static co.com.sofka.certification.userinterfaces.CheckOutUI.BT_GO_TO_PAYMENT;
 import static co.com.sofka.certification.userinterfaces.CheckOutUI.BT_GO_TO_SHIPPING;
-import static co.com.sofka.certification.userinterfaces.CheckOutUI.ET_INSERT_USER_CELL_PHONE;
+import static co.com.sofka.certification.userinterfaces.CheckOutUI.ET_CLIENT_EMAIL;
 import static co.com.sofka.certification.userinterfaces.CheckOutUI.ET_INSERT_USER_EMAIL;
-import static co.com.sofka.certification.userinterfaces.CheckOutUI.ET_INSERT_USER_FIRST_NAME;
-import static co.com.sofka.certification.userinterfaces.CheckOutUI.ET_INSERT_USER_ID;
-import static co.com.sofka.certification.userinterfaces.CheckOutUI.ET_INSERT_USER_LAST_NAME;
 import static co.com.sofka.certification.userinterfaces.CheckOutUI.ET_SHIPPING_RECEIPT;
-import static co.com.sofka.certification.userinterfaces.CheckOutUI.GV_TOTAL;
-import static co.com.sofka.certification.userinterfaces.CheckOutUI.TV_TOTAL_PRICE;
 
 import net.serenitybdd.core.Serenity;
 import net.serenitybdd.screenplay.Actor;
@@ -48,12 +45,7 @@ public class DoCheckoutTask implements Task {
                 Enter.theValue(userData.get("eMail")).into(ET_INSERT_USER_EMAIL),
                 hideKeyboard(),
                 Click.on(BT_CONTINUE_TO_INSERT_USER_DATA),
-                WaitUntil.the(ET_INSERT_USER_LAST_NAME, isVisible()).forNoMoreThan(Duration.ofSeconds(20)),
-                Enter.theValue(userData.get("firstName")).into(ET_INSERT_USER_FIRST_NAME),
-                hideKeyboard(),
-                Enter.theValue(userData.get("lastName")).into(ET_INSERT_USER_LAST_NAME),
-                Enter.theValue(userData.get("cellPhone")).into(ET_INSERT_USER_CELL_PHONE),
-                Enter.theValue(userData.get("id")).into(ET_INSERT_USER_ID),
+                enter().theUserData(userData),
                 Click.on(BT_GO_TO_SHIPPING),
                 scrollToElement()
                         .lookingFor(ET_SHIPPING_RECEIPT)
@@ -63,19 +55,22 @@ public class DoCheckoutTask implements Task {
                         .andPercent(0.5),
                 Enter.theValue(receiverName).into(ET_SHIPPING_RECEIPT),
                 hideKeyboard(),
+                Click.on(BT_GO_TO_PAYMENT)
+        );
 
-                //TODO refinar el scroll final y comparar subtotal y envio
-                //partir en subtareas para facilitar comprension
-                Click.on(BT_GO_TO_PAYMENT),
-                scrollToElement()
-                        .lookingFor(TV_TOTAL_PRICE.inside(GV_TOTAL))
+        actor.attemptsTo(
+                WaitUntil.the(ET_CLIENT_EMAIL, isVisible()).forNoMoreThan(Duration.ofSeconds(30)),
+                scrollFromArea()
                         .withScrollArea(scrollArea)
                         .inDirection("down")
                         .andSpeed(10000.0)
-                        .andPercent(0.5),
-                Click.on(TV_TOTAL_PRICE.inside(GV_TOTAL))
-
-                );
+                        .andPercent(1.0),
+                scrollFromArea()
+                        .withScrollArea(scrollArea)
+                        .inDirection("down")
+                        .andSpeed(10000.0)
+                        .andPercent(1.0)
+        );
     }
 
     public static DoCheckoutTask doCheckout() {
