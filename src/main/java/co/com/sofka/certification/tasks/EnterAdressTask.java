@@ -1,6 +1,6 @@
 package co.com.sofka.certification.tasks;
 
-import static co.com.sofka.certification.tasks.ScrollTask.scroll;
+import static co.com.sofka.certification.tasks.ScrollToElementTask.scrollToElement;
 import static co.com.sofka.certification.userinterfaces.SendToUI.BT_ADD_ADDRESS;
 import static co.com.sofka.certification.userinterfaces.SendToUI.BT_CHOOSE_CITY;
 import static co.com.sofka.certification.userinterfaces.SendToUI.BT_SEND_TO_HOME;
@@ -12,6 +12,9 @@ import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import co.com.sofka.certification.models.Cities;
 
 public class EnterAdressTask implements Task {
@@ -20,10 +23,26 @@ public class EnterAdressTask implements Task {
 
     @Override
     public <T extends Actor> void performAs(T actor) {
+        Map<String, Integer> area = new HashMap<>();
+        area.put("left", 500);
+        area.put("top", 200);
+        area.put("width", 100);
+        area.put("height", 1600);
+
+
         actor.attemptsTo(
                 Click.on(BT_SEND_TO_HOME),
-                Click.on(BT_CHOOSE_CITY),
-                scroll().lookingFor(city),
+                Click.on(BT_CHOOSE_CITY)
+        );
+        actor.attemptsTo(
+                scrollToElement()
+                        .withScrollArea(area)
+                        .lookingFor(TV_CHOOSE_CITY.of(city))
+                        .inDirection("down")
+                        .andPercent( 1.0)
+                        .andSpeed( 10000.0 )
+        );
+        actor.attemptsTo(
                 Click.on(TV_CHOOSE_CITY.of(city)),
                 Enter.theValue(address).into(ET_ADDRESS),
                 Click.on(BT_ADD_ADDRESS)

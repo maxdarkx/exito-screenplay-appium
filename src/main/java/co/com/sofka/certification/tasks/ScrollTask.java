@@ -13,6 +13,7 @@ import net.serenitybdd.screenplay.actions.DriverTask;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 
+@Deprecated
 public class ScrollTask implements Task {
     private Target fromTarget;
     private Target toTarget;

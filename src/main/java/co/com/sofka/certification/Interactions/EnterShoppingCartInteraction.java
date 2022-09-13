@@ -1,12 +1,12 @@
-package co.com.sofka.certification.tasks;
+package co.com.sofka.certification.Interactions;
 
 import static co.com.sofka.certification.userinterfaces.MarketplaceUI.BT_VIEW_CART;
 
 import net.serenitybdd.screenplay.Actor;
-import net.serenitybdd.screenplay.Task;
+import net.serenitybdd.screenplay.Interaction;
 import net.serenitybdd.screenplay.actions.Click;
 
-public class EnterShoppingCartTask implements Task {
+public class EnterShoppingCartInteraction implements Interaction {
 
     @Override
     public <T extends Actor> void performAs(T actor) {
@@ -15,7 +15,7 @@ public class EnterShoppingCartTask implements Task {
         );
     }
 
-    public static EnterShoppingCartTask enterShoppingCart() {
-        return new EnterShoppingCartTask();
+    public static EnterShoppingCartInteraction enterShoppingCart() {
+        return new EnterShoppingCartInteraction();
     }
 }

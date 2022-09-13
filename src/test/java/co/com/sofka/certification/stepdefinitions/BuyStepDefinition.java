@@ -4,7 +4,7 @@ import static co.com.sofka.certification.Interactions.AddItemToCartInteraction.a
 import static co.com.sofka.certification.models.MobileAppiumDriver.enableMultiWindows;
 import static co.com.sofka.certification.tasks.DoCheckoutTask.doCheckout;
 import static co.com.sofka.certification.tasks.EnterAdressTask.enterAdress;
-import static co.com.sofka.certification.tasks.EnterShoppingCartTask.enterShoppingCart;
+import static co.com.sofka.certification.Interactions.EnterShoppingCartInteraction.enterShoppingCart;
 import static co.com.sofka.certification.tasks.InitialStepsTask.doInitialSteps;
 import static co.com.sofka.certification.tasks.LookForItemTask.lookFor;
 
