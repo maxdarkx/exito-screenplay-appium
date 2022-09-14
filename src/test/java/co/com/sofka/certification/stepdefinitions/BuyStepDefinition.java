@@ -1,15 +1,15 @@
 package co.com.sofka.certification.stepdefinitions;
 
 import static co.com.sofka.certification.Interactions.AddItemToCartInteraction.addItemToCart;
-import static co.com.sofka.certification.models.MobileAppiumDriver.enableMultiWindows;
-import static co.com.sofka.certification.tasks.DoCheckoutTask.doCheckout;
-import static co.com.sofka.certification.tasks.EnterAdressTask.enterAdress;
 import static co.com.sofka.certification.Interactions.EnterShoppingCartInteraction.enterShoppingCart;
+import static co.com.sofka.certification.models.MobileAppiumDriver.enableMultiWindows;
+import static co.com.sofka.certification.tasks.DoCheckoutToResidenceTask.doCheckoutToResidence;
+import static co.com.sofka.certification.tasks.DoCheckoutToStoreTask.doCheckoutToStore;
+import static co.com.sofka.certification.tasks.EnterAdressTask.enterAdress;
 import static co.com.sofka.certification.tasks.EnterTheFirstLocalStoreTask.enterTheFirstLocalStore;
 import static co.com.sofka.certification.tasks.InitialStepsTask.doInitialSteps;
 import static co.com.sofka.certification.tasks.LookForItemTask.lookFor;
 import static co.com.sofka.certification.userinterfaces.CheckOutUI.GV_TOTAL;
-import static co.com.sofka.certification.userinterfaces.CheckOutUI.TV_SAVINGS;
 import static co.com.sofka.certification.userinterfaces.CheckOutUI.TV_SUBTOTAL;
 import static co.com.sofka.certification.userinterfaces.CheckOutUI.TV_TOTAL_PRICE;
 
@@ -43,12 +43,13 @@ public class BuyStepDefinition {
     @Before
     public void actorConfig() {
         OnStage.setTheStage(new OnlineCast());
-        enableMultiWindows();
+
     }
 
 
     @Given("{actor} enters into the shopping section using his city {string} and the first local store available to send")
     public void juanEntersIntoTheShoppingSectionUsingHisCityAndTheFirstLocalStoreAvailableToSend(Actor actor, String city) {
+        enableMultiWindows();
         actor.attemptsTo(
                 doInitialSteps(),
                 enterTheFirstLocalStore().fromTheCity(city)
@@ -58,6 +59,7 @@ public class BuyStepDefinition {
     @Given("{actor} enters into the shopping section using his city {string} and address {string}")
     public void juanEntersIntoTheShoppingSectionUsingHisCityAndAddress(Actor actor, String city, String address)
     {
+        enableMultiWindows();
         actor.attemptsTo(
                 doInitialSteps(),
                 enterAdress().withCity(city).andAdress(address)
@@ -80,17 +82,26 @@ public class BuyStepDefinition {
 
 
     @And("{actor} finishes the checkout process sending the item to his house with this data:")
-    @And("{actor} he finishes the checkout process sending the item the store using his data:")
-    public void heFinishesTheCheckoutProcessSendingTheItemToHisHouseWithThisData(Actor actor, List<Map<String, String>> listUserData) {
+    //@And("{actor} finishes the checkout process sending the item to the store using his data:")
+    public void heFinishesTheCheckoutProcessSendingTheItem(Actor actor, List<Map<String, String>> listUserData) {
         Map<String, String> userData = listUserData.get(0);
         actor.attemptsTo(
                 enterShoppingCart(),
-                doCheckout().with(userData)
+                doCheckoutToResidence().with(userData)
+        );
+    }
+
+    @And("{actor} finishes the checkout process sending the item to the store using his data:")
+    public void heFinishesTheCheckoutProcessSendingTheItemToTheStoreUsingHisData(Actor actor, List<Map<String, String>> listUserData) {
+        Map<String, String> userData = listUserData.get(0);
+        actor.attemptsTo(
+                enterShoppingCart(),
+                doCheckoutToStore().with(userData)
         );
     }
 
     @Then("{actor} must see the item added on checkout page")
-    public void juanMustSeeTheItemAddedOnCheckoutPage(Actor actor)
+    public void mustSeeTheItemAddedOnCheckoutPage(Actor actor)
     {
         String subTotal = TV_SUBTOTAL.inside(GV_TOTAL).resolveFor(actor).getText()
                 .replace(",", "")
@@ -112,4 +123,6 @@ public class BuyStepDefinition {
                 Ensure.that(subTotalNumber).isLessThanOrEqualTo(listPriceNumber)
         );
     }
+
+
 }

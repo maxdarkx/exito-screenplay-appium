@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 
 public class CheckOutUI {
     public static Target BT_DO_CHECKOUT = Target.the("Button to checkout the shopping cart items")
-            .located(By.xpath("//android.widget.TextView[contains(@text,'Finalizar compra')]"));
+            .located(By.xpath("//android.view.View[@resource-id = 'cart-to-orderform']"));
     public static Target ET_INSERT_USER_EMAIL = Target.the("EditText to insert client's email")
             .located(By.xpath("//android.widget.EditText[@resource-id = 'client-pre-email']"));
     public static Target BT_CONTINUE_TO_INSERT_USER_DATA = Target.the("Button to continue inserting user's data")

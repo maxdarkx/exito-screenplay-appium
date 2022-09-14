@@ -3,14 +3,12 @@ package co.com.sofka.certification.tasks;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 import static co.com.sofka.certification.Interactions.HideKeyboardInteraction.hideKeyboard;
 import static co.com.sofka.certification.tasks.EnterUserDataTask.enter;
-import static co.com.sofka.certification.tasks.ScrollFromAreaTask.scrollFromArea;
 import static co.com.sofka.certification.tasks.ScrollToCheckTotalPriceTask.scrollToCheckTotalPrice;
 import static co.com.sofka.certification.tasks.ScrollToElementTask.scrollToElement;
 import static co.com.sofka.certification.userinterfaces.CheckOutUI.BT_CONTINUE_TO_INSERT_USER_DATA;
 import static co.com.sofka.certification.userinterfaces.CheckOutUI.BT_DO_CHECKOUT;
 import static co.com.sofka.certification.userinterfaces.CheckOutUI.BT_GO_TO_PAYMENT;
 import static co.com.sofka.certification.userinterfaces.CheckOutUI.BT_GO_TO_SHIPPING;
-import static co.com.sofka.certification.userinterfaces.CheckOutUI.ET_CLIENT_EMAIL;
 import static co.com.sofka.certification.userinterfaces.CheckOutUI.ET_INSERT_USER_EMAIL;
 import static co.com.sofka.certification.userinterfaces.CheckOutUI.ET_SHIPPING_RECEIPT;
 
@@ -25,7 +23,7 @@ import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DoCheckoutTask implements Task {
+public class DoCheckoutToResidenceTask implements Task {
     private Map<String, String> userData;
 
 
@@ -42,6 +40,7 @@ public class DoCheckoutTask implements Task {
         String receiverName = userData.get("firstName").concat(" " + userData.get("lastName"));
 
         actor.attemptsTo(
+                WaitUntil.the(BT_DO_CHECKOUT, isVisible()).forNoMoreThan(Duration.ofSeconds(20)),
                 Click.on(BT_DO_CHECKOUT),
                 WaitUntil.the(ET_INSERT_USER_EMAIL, isVisible()).forNoMoreThan(Duration.ofSeconds(20)),
                 Enter.theValue(userData.get("eMail")).into(ET_INSERT_USER_EMAIL),
@@ -62,11 +61,11 @@ public class DoCheckoutTask implements Task {
         );
     }
 
-    public static DoCheckoutTask doCheckout() {
-        return new DoCheckoutTask();
+    public static DoCheckoutToResidenceTask doCheckoutToResidence() {
+        return new DoCheckoutToResidenceTask();
     }
 
-    public DoCheckoutTask with(Map<String, String> data) {
+    public DoCheckoutToResidenceTask with(Map<String, String> data) {
         userData = data;
         return this;
     }
