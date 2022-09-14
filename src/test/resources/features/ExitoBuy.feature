@@ -14,7 +14,7 @@ Feature: I as an Exito app user
       | firstname | lastname | address             | city       | email                        | cellphone  | id         | item            |
       | Juan      | Jodase   | calle 4 # 6 - 95    | FUSAGASUGA | juan.jodase@noleimporta.com  | 3112224455 | 1037111233 | lapicero parker |
       | Juan      | Pendejo  | calle 4 # 6 - 95    | FUSAGASUGA | juan.pendejo@noleimporta.com | 3112224453 | 1037111243 | tv samsung 50   |
-      | Juan      | Pendejo  | calle 111 # 63 B 38 | MEDELLIN   | juan.pendejo@noleimporta.com | 3112224453 | 1037111243 | borrador        |
+      | Juan      | Marica   | calle 111 # 63 B 38 | MEDELLIN   | juan.pendejo@noleimporta.com | 3112224453 | 1037111243 | borrador        |
 
 
   Scenario Outline: Buy an item and sent it to juan's local store
@@ -28,5 +28,5 @@ Feature: I as an Exito app user
     Examples:
       | firstname | lastname | city       | email                        | cellphone  | id         | item            |
       | Juan      | Jodase   | FUSAGASUGA | juan.jodase@noleimporta.com  | 3112224455 | 1037111233 | lapicero parker |
-      | Juan      | Pendejo  | FUSAGASUGA | juan.pendejo@noleimporta.com | 3112224453 | 1037111243 | tv samsung 50   |
-      | Juan      | Pendejo  | MEDELLIN   | juan.pendejo@noleimporta.com | 3112224453 | 1037111243 | borrador        |
+      | Juan      | Pendejo  | CALI       | juan.pendejo@noleimporta.com | 3112224453 | 1037111243 | tv samsung 50   |
+      | Juan      | Marica   | MEDELLIN   | juan.pendejo@noleimporta.com | 3112224453 | 1037111243 | borrador        |
