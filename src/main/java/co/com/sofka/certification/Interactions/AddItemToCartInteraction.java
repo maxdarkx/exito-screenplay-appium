@@ -22,7 +22,7 @@ public class AddItemToCartInteraction implements Interaction {
         );
         String price = TV_ITEM_PRICE.inside(VG_ITEM.of("2")).resolveFor(actor).getText();
         actor.remember("itemPrice",price);
-        LOGGER.info("item Price: "+ price);
+        LOGGER.info("item List Price: "+ price);
     }
 
     public static AddItemToCartInteraction addItemToCart()
