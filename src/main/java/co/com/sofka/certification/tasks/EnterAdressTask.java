@@ -32,17 +32,13 @@ public class EnterAdressTask implements Task {
 
         actor.attemptsTo(
                 Click.on(BT_SEND_TO_HOME),
-                Click.on(BT_CHOOSE_CITY)
-        );
-        actor.attemptsTo(
+                Click.on(BT_CHOOSE_CITY),
                 scrollToElement()
                         .withScrollArea(area)
                         .lookingFor(TV_CHOOSE_CITY.of(city))
                         .inDirection("down")
                         .andPercent( 1.0)
-                        .andSpeed( 10000.0 )
-        );
-        actor.attemptsTo(
+                        .andSpeed( 10000.0 ),
                 Click.on(TV_CHOOSE_CITY.of(city)),
                 Enter.theValue(address).into(ET_ADDRESS),
                 Click.on(BT_ADD_ADDRESS)

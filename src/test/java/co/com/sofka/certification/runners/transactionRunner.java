@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(glue = "co.com.sofka.certification.stepdefinitions",
 features = "src/test/resources/features/ExitoBuy.feature",
-tags = "",
+tags = "@run",
 snippets = CucumberOptions.SnippetType.CAMELCASE)
 
 public class transactionRunner {
