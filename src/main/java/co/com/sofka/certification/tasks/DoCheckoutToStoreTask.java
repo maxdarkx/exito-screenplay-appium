@@ -4,14 +4,11 @@ import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isPres
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 import static co.com.sofka.certification.Interactions.HideKeyboardInteraction.hideKeyboard;
 import static co.com.sofka.certification.tasks.EnterUserDataTask.enter;
-import static co.com.sofka.certification.tasks.ScrollToCheckTotalPriceTask.scrollToCheckTotalPrice;
-import static co.com.sofka.certification.tasks.ScrollToElementTask.scrollToElement;
+import static co.com.sofka.certification.tasks.ScrollToCheckTotalPriceSendingToHomeTask.scrollToCheckTotalPrice;
+import static co.com.sofka.certification.tasks.ScrollToCheckTotalPriceSendingToStoreTask.scrollToCheckTotalPriceSendingToStore;
 import static co.com.sofka.certification.userinterfaces.CheckOutUI.BT_CONTINUE_TO_INSERT_USER_DATA;
 import static co.com.sofka.certification.userinterfaces.CheckOutUI.BT_DO_CHECKOUT;
-import static co.com.sofka.certification.userinterfaces.CheckOutUI.BT_GO_TO_SHIPPING;
 import static co.com.sofka.certification.userinterfaces.CheckOutUI.ET_INSERT_USER_EMAIL;
-import static co.com.sofka.certification.userinterfaces.CheckOutUI.GV_TOTAL;
-import static co.com.sofka.certification.userinterfaces.CheckOutUI.TV_GO_BACK_TO_CART;
 
 import net.serenitybdd.core.Serenity;
 import net.serenitybdd.screenplay.Actor;
@@ -51,7 +48,8 @@ public class DoCheckoutToStoreTask implements Task {
                 hideKeyboard(),
                 //Click.on(BT_GO_TO_SHIPPING),
 
-                scrollToCheckTotalPrice().withScrollArea(scrollArea)
+                scrollToCheckTotalPriceSendingToStore()
+                        .withScrollArea(scrollArea)
         );
     }
 

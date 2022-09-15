@@ -82,7 +82,6 @@ public class BuyStepDefinition {
 
 
     @And("{actor} finishes the checkout process sending the item to his house with this data:")
-    //@And("{actor} finishes the checkout process sending the item to the store using his data:")
     public void heFinishesTheCheckoutProcessSendingTheItem(Actor actor, List<Map<String, String>> listUserData) {
         Map<String, String> userData = listUserData.get(0);
         actor.attemptsTo(

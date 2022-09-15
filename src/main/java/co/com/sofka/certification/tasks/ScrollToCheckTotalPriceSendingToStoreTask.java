@@ -11,13 +11,12 @@ import net.serenitybdd.screenplay.waits.WaitUntil;
 import java.time.Duration;
 import java.util.Map;
 
-public class ScrollToCheckTotalPriceTask implements Task {
+public class ScrollToCheckTotalPriceSendingToStoreTask implements Task {
     private Map<String, Integer> area;
 
     @Override
     public <T extends Actor> void performAs(T actor) {
         actor.attemptsTo(
-                //WaitUntil.the(ET_CLIENT_EMAIL, isVisible()).forNoMoreThan(Duration.ofSeconds(30)),
                 scrollFromArea()
                         .withScrollArea(area)
                         .inDirection("down")
@@ -27,16 +26,16 @@ public class ScrollToCheckTotalPriceTask implements Task {
                         .withScrollArea(area)
                         .inDirection("down")
                         .andSpeed(10000.0)
-                        .andPercent(1.0)
+                        .andPercent(0.75)
         );
     }
 
-    public static ScrollToCheckTotalPriceTask scrollToCheckTotalPrice()
+    public static ScrollToCheckTotalPriceSendingToStoreTask scrollToCheckTotalPriceSendingToStore()
     {
-        return new ScrollToCheckTotalPriceTask();
+        return new ScrollToCheckTotalPriceSendingToStoreTask();
     }
 
-    public ScrollToCheckTotalPriceTask withScrollArea(Map<String, Integer> scrollArea)
+    public ScrollToCheckTotalPriceSendingToStoreTask withScrollArea(Map<String, Integer> scrollArea)
     {
         area = scrollArea;
         return this;
