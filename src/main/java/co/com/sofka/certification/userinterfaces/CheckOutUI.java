@@ -27,6 +27,9 @@ public class CheckOutUI {
             .located(By.xpath("//android.widget.Button[@resource-id = 'btn-go-to-payment']"));
     public static Target ET_CLIENT_EMAIL = Target.the("EditText with the client's email")
             .located(By.xpath("//android.widget.EditText[@resource-id = 'client-email']"));
+    public static Target TV_GO_BACK_TO_CART = Target.the("Textview to go back to cart")
+            .located(By.xpath("//android.widget.TextView[@resource-id = 'orderform-minicart-to-cart']"));
+
 
 
 
