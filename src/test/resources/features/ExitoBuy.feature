@@ -2,6 +2,7 @@ Feature: I as an Exito app user
   want to navigate inside the application
   to buy some items.
 
+  @run1
   Scenario Outline: Buy an item and sent it to juan's home
     Given Juan enters into the shopping section using his city "<city>" and address "<address>"
     When he looks for an "<item>"
@@ -13,10 +14,10 @@ Feature: I as an Exito app user
     Examples:
       | firstname | lastname | address             | city       | email                        | cellphone  | id         | item            |
       | Juan      | Jodase   | calle 4 # 6 - 95    | FUSAGASUGA | juan.jodase@noleimporta.com  | 3112224455 | 1037111233 | lapicero parker |
-      | Juan      | Pendejo  | calle 4 # 6 - 95    | FUSAGASUGA | juan.pendejo@noleimporta.com | 3112224453 | 1037111243 | tv samsung 50   |
+      | Juan      | Pendejo  | calle 4 # 6 - 95    | CALI       | juan.pendejo@noleimporta.com | 3112224453 | 1037111243 | tv samsung 50   |
       | Juan      | Pendejo  | calle 111 # 63 B 38 | MEDELLIN   | juan.pendejo@noleimporta.com | 3112224453 | 1037111243 | borrador        |
 
-
+@run2
   Scenario Outline: Buy an item and sent it to juan's local store
     Given Juan enters into the shopping section using his city "<city>" and the first local store available to send
     When he looks for an "<item>"
@@ -28,5 +29,5 @@ Feature: I as an Exito app user
     Examples:
       | firstname | lastname | city       | email                        | cellphone  | id         | item            |
       | Juan      | Jodase   | FUSAGASUGA | juan.jodase@noleimporta.com  | 3112224455 | 1037111233 | lapicero parker |
-      | Juan      | Pendejo  | FUSAGASUGA | juan.pendejo@noleimporta.com | 3112224453 | 1037111243 | tv samsung 50   |
+      | Juan      | Pendejo  | CALI       | juan.pendejo@noleimporta.com | 3112224453 | 1037111243 | tv samsung 50   |
       | Juan      | Pendejo  | MEDELLIN   | juan.pendejo@noleimporta.com | 3112224453 | 1037111243 | borrador        |

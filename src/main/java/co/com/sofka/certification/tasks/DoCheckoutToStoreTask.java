@@ -1,17 +1,17 @@
 package co.com.sofka.certification.tasks;
 
+import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isPresent;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 import static co.com.sofka.certification.Interactions.HideKeyboardInteraction.hideKeyboard;
 import static co.com.sofka.certification.tasks.EnterUserDataTask.enter;
-import static co.com.sofka.certification.tasks.ScrollFromAreaTask.scrollFromArea;
 import static co.com.sofka.certification.tasks.ScrollToCheckTotalPriceTask.scrollToCheckTotalPrice;
 import static co.com.sofka.certification.tasks.ScrollToElementTask.scrollToElement;
 import static co.com.sofka.certification.userinterfaces.CheckOutUI.BT_CONTINUE_TO_INSERT_USER_DATA;
 import static co.com.sofka.certification.userinterfaces.CheckOutUI.BT_DO_CHECKOUT;
-import static co.com.sofka.certification.userinterfaces.CheckOutUI.BT_GO_TO_PAYMENT;
 import static co.com.sofka.certification.userinterfaces.CheckOutUI.BT_GO_TO_SHIPPING;
 import static co.com.sofka.certification.userinterfaces.CheckOutUI.ET_INSERT_USER_EMAIL;
-import static co.com.sofka.certification.userinterfaces.CheckOutUI.ET_SHIPPING_RECEIPT;
+import static co.com.sofka.certification.userinterfaces.CheckOutUI.GV_TOTAL;
+import static co.com.sofka.certification.userinterfaces.CheckOutUI.TV_GO_BACK_TO_CART;
 
 import net.serenitybdd.core.Serenity;
 import net.serenitybdd.screenplay.Actor;
@@ -41,20 +41,17 @@ public class DoCheckoutToStoreTask implements Task {
         String receiverName = userData.get("firstName").concat(" " + userData.get("lastName"));
 
         actor.attemptsTo(
-                WaitUntil.the(BT_DO_CHECKOUT, isVisible()).forNoMoreThan(Duration.ofSeconds(20)),
+                WaitUntil.the(BT_DO_CHECKOUT, isPresent()).forNoMoreThan(Duration.ofSeconds(30)),
                 Click.on(BT_DO_CHECKOUT),
-                WaitUntil.the(ET_INSERT_USER_EMAIL, isVisible()).forNoMoreThan(Duration.ofSeconds(20)),
+                WaitUntil.the(ET_INSERT_USER_EMAIL, isVisible()).forNoMoreThan(Duration.ofSeconds(30)),
                 Enter.theValue(userData.get("eMail")).into(ET_INSERT_USER_EMAIL),
                 hideKeyboard(),
                 Click.on(BT_CONTINUE_TO_INSERT_USER_DATA),
                 enter().theUserData(userData),
-                Click.on(BT_GO_TO_SHIPPING),
                 hideKeyboard(),
-                scrollFromArea()
-                        .withScrollArea(scrollArea)
-                        .inDirection("down")
-                        .andSpeed(10000.0)
-                        .andPercent(1.0)
+                //Click.on(BT_GO_TO_SHIPPING),
+
+                scrollToCheckTotalPrice().withScrollArea(scrollArea)
         );
     }
 

@@ -6,7 +6,8 @@ import org.openqa.selenium.By;
 
 public class SendToUI {
     //Send to address
-    public static Target BT_SEND_TO_HOME = Target.the("Button to send the sale to home").located(By.id("constraitLayout_user_address"));
+    public static Target BT_SEND_TO_HOME = Target.the("Button to send the sale to home")
+            .located(By.id("constraitLayout_user_address"));
     public static Target BT_CHOOSE_CITY = Target.the("Button to select a city from the listView")
             .located(By.xpath("//android.widget.Spinner[@resource-id = 'com.exito.appcompania:id/filled_exposed_dropdown_city']"));
     public static Target TV_CHOOSE_CITY = Target.the("List item containing the buyer's city")

@@ -17,7 +17,7 @@ public class ScrollToCheckTotalPriceTask implements Task {
     @Override
     public <T extends Actor> void performAs(T actor) {
         actor.attemptsTo(
-                WaitUntil.the(ET_CLIENT_EMAIL, isVisible()).forNoMoreThan(Duration.ofSeconds(30)),
+                //WaitUntil.the(ET_CLIENT_EMAIL, isVisible()).forNoMoreThan(Duration.ofSeconds(30)),
                 scrollFromArea()
                         .withScrollArea(area)
                         .inDirection("down")
