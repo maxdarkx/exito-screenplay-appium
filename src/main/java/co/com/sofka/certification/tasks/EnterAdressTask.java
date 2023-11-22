@@ -6,6 +6,8 @@ import static co.com.sofka.certification.userinterfaces.SendToUI.BT_CHOOSE_CITY;
 import static co.com.sofka.certification.userinterfaces.SendToUI.BT_SEND_TO_HOME;
 import static co.com.sofka.certification.userinterfaces.SendToUI.ET_ADDRESS;
 import static co.com.sofka.certification.userinterfaces.SendToUI.TV_CHOOSE_CITY;
+import static co.com.sofka.certification.userinterfaces.SendToUI.BT_CHOOSE_DPTO;
+import static co.com.sofka.certification.userinterfaces.SendToUI.TV_CHOOSE_DEPARTMENT;
 
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
@@ -16,9 +18,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import co.com.sofka.certification.models.Cities;
+import co.com.sofka.certification.models.Departments;
 
 public class EnterAdressTask implements Task {
     private String city;
+    private String department;
     private String address;
 
     @Override
@@ -31,7 +35,19 @@ public class EnterAdressTask implements Task {
 
 
         actor.attemptsTo(
-                Click.on(BT_SEND_TO_HOME),
+                Click.on(BT_SEND_TO_HOME)
+        );
+        actor.attemptsTo(
+                Click.on(BT_CHOOSE_DPTO),
+                scrollToElement()
+                        .withScrollArea(area)
+                        .lookingFor(TV_CHOOSE_DEPARTMENT.of(department))
+                        .inDirection("down")
+                        .andPercent( 1.0)
+                        .andSpeed( 10000.0 ),
+                Click.on(TV_CHOOSE_DEPARTMENT.of(department))
+        );
+        actor.attemptsTo(
                 Click.on(BT_CHOOSE_CITY),
                 scrollToElement()
                         .withScrollArea(area)
@@ -39,7 +55,10 @@ public class EnterAdressTask implements Task {
                         .inDirection("down")
                         .andPercent( 1.0)
                         .andSpeed( 10000.0 ),
-                Click.on(TV_CHOOSE_CITY.of(city)),
+                Click.on(TV_CHOOSE_CITY.of(city))
+        );
+        actor.attemptsTo(
+
                 Enter.theValue(address).into(ET_ADDRESS),
                 Click.on(BT_ADD_ADDRESS)
         );
@@ -54,6 +73,12 @@ public class EnterAdressTask implements Task {
         this.city = enumCityes.getCityName();
         return this;
     }
+    public EnterAdressTask inDepartment(String dpto) {
+        Departments enumDepartments = Departments.valueOf(dpto);
+        this.department = enumDepartments.getDepartmentName();
+        return this;
+    }
+
 
     public EnterAdressTask andAdress(String address) {
         this.address = address;
