@@ -26,10 +26,10 @@ public class CheckOutUI {
             .located(By.xpath("//android.widget.TextView[@text='*Número']/following::android.widget.EditText"));
 
     public static Target CB_TERMS_AND_CONDITIONS = Target.the("CheckBox to agreed terms and conditions")
-        .located(By.xpath("//android.widget.TextView[contains(@text,'marketplace')]/preceding::android.widget.CheckBox"));
+        .located(By.xpath("//android.widget.TextView[contains(@text,'datos personales')]/preceding::android.widget.CheckBox[2]"));
 
     public static Target CB_DATA_TREATMENT = Target.the("CheckBox to agreed data treatment")
-            .located(By.xpath("//android.widget.TextView[contains(@text,'marketplace')]/following::android.widget.CheckBox"));
+            .located(By.xpath("//android.widget.TextView[contains(@text,'datos personales')]/preceding::android.widget.CheckBox[1]"));
 
     public static Target BT_CONTINUE_TO_SHIPPING = Target.the("Button to set package receiver's data")
             .located(By.xpath("//android.widget.Button[contains(@text, 'Continuar')]"));
@@ -51,11 +51,9 @@ public class CheckOutUI {
     public static Target GV_TOTAL = Target.the("GridView containing shipping cost and total sale")
             .located(By.xpath("//android.widget.GridView"));
     public static Target TV_SUBTOTAL = Target.the("TextView to show sale subtotal")
-            .located(By.xpath("//android.view.View[1]/android.view.View[2]"));
-    public static Target TV_SAVINGS = Target.the("TextView to show sale savings")
-            .located(By.xpath("//android.view.View[2]/android.view.View[2]"));
-    public static Target TV_SHIPPING_COST = Target.the("TextView to show shipping cost")
-            .located(By.xpath("//android.view.View[3]/android.view.View[2]"));
-    public static Target TV_TOTAL_PRICE = Target.the("TextView to show total price")
-            .located(By.xpath("//android.view.View[contains(@text, 'Total')]//following-sibling::android.view.View"));
+            .located(By.xpath("//android.view.View[@text = 'Subtotal:']/following-sibling::android.view.View"));
+
+    public static Target TV_TOTAL = Target.the("TextView to show sale total")
+            .located(By.xpath("//android.view.View[@text = 'Total:']/following-sibling::android.view.View"));
+
 }

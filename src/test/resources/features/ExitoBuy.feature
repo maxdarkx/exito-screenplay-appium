@@ -12,7 +12,7 @@ Feature: I as an Exito app user
     Then Juan must see the item added on checkout page
 
     Examples:
-      | firstname | lastname | address             | department   | city       | email                        | cellphone  | id         | item            |
-      | Juan      | Jodase   | calle 4 # 6 - 95    | CUNDINAMARCA | FUSAGASUGA | juan.jodase@noleimporta.com  | 3112224455 | 1037111233 | lapicero parker |
-      | Juan      | Pendejo  | calle 4 # 6 - 95    | CUNDINAMARCA | FUSAGASUGA | juan.pendejo@noleimporta.com | 3112224453 | 1037111243 | tv samsung 50   |
-      | Juan      | Pendejo  | calle 111 # 63 B 38 | ANTIOQUIA    | MEDELLIN   | juan.pendejo@noleimporta.com | 3112224453 | 1037111243 | borrador        |
+      | firstname | lastname | address             | department   | city       | email                    | cellphone  | id         | item     |
+      | Juan      | Jodase   | calle 4 # 6 - 95    | CUNDINAMARCA | FUSAGASUGA | juan.jodase@gmail.com    | 3112224455 | 1037111233 | parker   |
+      | Juan      | Pendejo  | calle 4 # 6 - 95    | CUNDINAMARCA | FUSAGASUGA | juan.pendejo@gmail.com   | 3112224453 | 1037111243 | tv 50    |
+      | Juan      | Pendejo  | calle 111 # 63 B 38 | ANTIOQUIA    | MEDELLIN   | juan.pendejo@hotmail.com | 3112224453 | 1037111243 | borrador |

@@ -19,6 +19,8 @@ import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
+import net.serenitybdd.screenplay.actions.Switch;
+import net.serenitybdd.screenplay.conditions.Check;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 
 import java.time.Duration;
@@ -44,37 +46,36 @@ public class DoCheckoutTask implements Task {
         String receiverName = userData.get("firstName").concat(" " + userData.get("lastName"));
 
         actor.attemptsTo(
-                WaitUntil.the(ET_INSERT_USER_EMAIL, isVisible()).forNoMoreThan(Duration.ofSeconds(40)),
+                WaitUntil.the(ET_INSERT_USER_EMAIL, isVisible()).forNoMoreThan(Duration.ofSeconds(120)),
                 Click.on(ET_INSERT_USER_EMAIL),
                 Enter.theValue(userData.get("eMail")).into(ET_INSERT_USER_EMAIL),
                 press().theKey(AndroidKey.ENTER),
                 Click.on(BT_CONTINUE_TO_INSERT_USER_DATA)
                 );
-
         actor.attemptsTo(
-                scrollToElement()
-                        .lookingFor(BT_PROCESS_PAYMENT)
-                        .withScrollArea(scrollArea)
-                        .inDirection("down")
-                        .andSpeed(10000.0)
-                        .andPercent(0.5),
-                Click.on(BT_PROCESS_PAYMENT)
+                Check.whether(BT_PROCESS_PAYMENT.isVisibleFor(actor))
+                        .otherwise(
+                                scrollToElement()
+                                        .lookingFor(BT_PROCESS_PAYMENT)
+                                        .withScrollArea(scrollArea)
+                                        .inDirection("down")
+                                        .andSpeed(10000.0)
+                                        .andPercent(0.5)
+                        )
+                        .then(
+                                Click.on(BT_PROCESS_PAYMENT)
+                        )
         );
 
-        actor.attemptsTo(
-                enter().theUserData(userData),
-                scrollToElement()
-                        .lookingFor(BT_CONTINUE_TO_SHIPPING)
-                        .withScrollArea(scrollArea)
-                        .inDirection("up")
-                        .andSpeed(10000.0)
-                        .andPercent(0.5),
-                Click.on(BT_CONTINUE_TO_SHIPPING)
-        );
 
         actor.attemptsTo(
-                Enter.theValue(receiverName).into(ET_SHIPPING_RECEIPT),
-                Click.on(BT_GO_TO_PAYMENT)
+                enter().theUserData(userData)
+        );
+
+
+
+        actor.attemptsTo(
+                Enter.theValue(receiverName).into(ET_SHIPPING_RECEIPT)
         );
     }
 
