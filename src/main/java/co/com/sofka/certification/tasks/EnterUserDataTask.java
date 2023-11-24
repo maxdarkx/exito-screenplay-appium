@@ -21,12 +21,12 @@ public class EnterUserDataTask implements Task {
     @Override
     public <T extends Actor> void performAs(T actor) {
         actor.attemptsTo(
-                WaitUntil.the(ET_INSERT_USER_LAST_NAME, isVisible()).forNoMoreThan(Duration.ofSeconds(20)),
-                Enter.theValue(userData.get("firstName")).into(ET_INSERT_USER_FIRST_NAME),
-                hideKeyboard(),
-                Enter.theValue(userData.get("lastName")).into(ET_INSERT_USER_LAST_NAME),
-                Enter.theValue(userData.get("cellPhone")).into(ET_INSERT_USER_CELL_PHONE),
-                Enter.theValue(userData.get("id")).into(ET_INSERT_USER_ID)
+                WaitUntil.the(ET_INSERT_USER_FIRST_NAME, isVisible()).forNoMoreThan(Duration.ofSeconds(20)),
+                Enter.theValue(userData.get("firstName")).into(ET_INSERT_USER_FIRST_NAME)
+                //hideKeyboard(),
+                //Enter.theValue(userData.get("lastName")).into(ET_INSERT_USER_LAST_NAME),
+                //Enter.theValue(userData.get("cellPhone")).into(ET_INSERT_USER_CELL_PHONE),
+                //Enter.theValue(userData.get("id")).into(ET_INSERT_USER_ID)
         );
     }
 

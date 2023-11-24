@@ -22,8 +22,8 @@ public class InitialStepsTask implements Task {
         actor.attemptsTo(
                 Click.on(BT_START_SESSION_LATER),
                 Click.on(BT_ALLOW_DETECT_LOCATION_WHILE_USING_APP),
-                Click.on(BT_SKIP_TUTORIAL),
-                Click.on(BT_CLOSE_IMAGE_PROPAGANDA),
+                //Click.on(BT_SKIP_TUTORIAL),
+                //Click.on(BT_CLOSE_IMAGE_PROPAGANDA),
                 Click.on(BT_SALES_MENU)
         );
     }

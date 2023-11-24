@@ -44,13 +44,16 @@ public class BuyStepDefinition {
         OnStage.setTheStage(new OnlineCast());
     }
 
-    @Given("{actor} enters into the shopping section using his city {string} and address {string}")
-    public void juanEntersIntoTheShoppingSectionUsingHisCityAndAddress(Actor actor, String city, String address)
+    @Given("{actor} enters into the shopping section using his location department as {string} and his city as {string} and address {string}")
+    public void juanEntersIntoTheShoppingSectionUsingHisCityAndAddress(Actor actor, String dpto, String city, String address)
     {
-        enableMultiWindows();
+        //enableMultiWindows();
         actor.attemptsTo(
                 doInitialSteps(),
-                enterAdress().withCity(city).andAdress(address)
+                enterAdress()
+                        .inDepartment(dpto)
+                        .withCity(city)
+                        .andAdress(address)
         );
     }
 

@@ -10,6 +10,7 @@ import static co.com.sofka.certification.userinterfaces.CheckOutUI.BT_CONTINUE_T
 import static co.com.sofka.certification.userinterfaces.CheckOutUI.BT_DO_CHECKOUT;
 import static co.com.sofka.certification.userinterfaces.CheckOutUI.BT_GO_TO_PAYMENT;
 import static co.com.sofka.certification.userinterfaces.CheckOutUI.BT_GO_TO_SHIPPING;
+import static co.com.sofka.certification.userinterfaces.CheckOutUI.BT_PROCESS_PAYMENT;
 import static co.com.sofka.certification.userinterfaces.CheckOutUI.ET_CLIENT_EMAIL;
 import static co.com.sofka.certification.userinterfaces.CheckOutUI.ET_INSERT_USER_EMAIL;
 import static co.com.sofka.certification.userinterfaces.CheckOutUI.ET_SHIPPING_RECEIPT;
@@ -42,23 +43,37 @@ public class DoCheckoutTask implements Task {
         String receiverName = userData.get("firstName").concat(" " + userData.get("lastName"));
 
         actor.attemptsTo(
-                Click.on(BT_DO_CHECKOUT),
                 WaitUntil.the(ET_INSERT_USER_EMAIL, isVisible()).forNoMoreThan(Duration.ofSeconds(20)),
+                Click.on(ET_INSERT_USER_EMAIL),
                 Enter.theValue(userData.get("eMail")).into(ET_INSERT_USER_EMAIL),
                 hideKeyboard(),
-                Click.on(BT_CONTINUE_TO_INSERT_USER_DATA),
-                enter().theUserData(userData),
-                Click.on(BT_GO_TO_SHIPPING),
+                Click.on(BT_CONTINUE_TO_INSERT_USER_DATA)
+                );
+        actor.attemptsTo(
+                scrollToElement()
+                        .lookingFor(BT_PROCESS_PAYMENT)
+                        .withScrollArea(scrollArea)
+                        .inDirection("down")
+                        .andSpeed(10000.0)
+                        .andPercent(0.5),
+                Click.on(BT_PROCESS_PAYMENT)
+        );
+
+        actor.attemptsTo(
+                enter().theUserData(userData)
+                /*Click.on(BT_GO_TO_SHIPPING),
                 scrollToElement()
                         .lookingFor(ET_SHIPPING_RECEIPT)
                         .withScrollArea(scrollArea)
                         .inDirection("down")
                         .andSpeed(10000.0)
                         .andPercent(0.5),
+
                 Enter.theValue(receiverName).into(ET_SHIPPING_RECEIPT),
                 hideKeyboard(),
                 Click.on(BT_GO_TO_PAYMENT),
                 scrollToCheckTotalPrice().withScrollArea(scrollArea)
+                */
         );
     }
 
