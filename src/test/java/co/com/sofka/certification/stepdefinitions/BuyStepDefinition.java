@@ -31,7 +31,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class BuyStepDefinition {
-    private Logger LOGGER = LoggerFactory.getLogger(BuyStepDefinition.class);
+    private final Logger LOGGER = LoggerFactory.getLogger(BuyStepDefinition.class);
 
 
     @ParameterType(".*")

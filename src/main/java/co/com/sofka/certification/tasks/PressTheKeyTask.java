@@ -4,6 +4,7 @@ import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.DriverTask;
+import net.thucydides.core.webdriver.WebDriverFacade;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
@@ -36,7 +37,8 @@ public class PressTheKeyTask implements Task {
     {
         return new DriverTask(
                 webDriver -> {
-                    ((AndroidDriver) webDriver).pressKey(new KeyEvent(code));
+                    AndroidDriver mobileDriver =(AndroidDriver) ((AppiumDriver) ((WebDriverFacade) webDriver).getProxiedDriver());
+                    mobileDriver.pressKey(new KeyEvent(code));
                 }
         );
     }

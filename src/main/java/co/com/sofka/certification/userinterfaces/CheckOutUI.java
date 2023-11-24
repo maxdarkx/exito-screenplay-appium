@@ -19,11 +19,24 @@ public class CheckOutUI {
     public static Target ET_INSERT_USER_FIRST_NAME = Target.the("EditText to insert client's firstname")
             .located(By.xpath("//android.widget.TextView[@text='*Nombre']/following::android.widget.EditText"));
     public static Target ET_INSERT_USER_LAST_NAME = Target.the("EditText to insert client's lastname")
-            .located(By.xpath("//android.widget.EditText[@resource-id = 'client-last-name']"));
+            .located(By.xpath("//android.widget.TextView[@text='*Apellido']/following::android.widget.EditText"));
     public static Target ET_INSERT_USER_CELL_PHONE = Target.the("EditText to insert client's cellphone number")
-            .located(By.xpath("//android.widget.EditText[@resource-id = 'client-phone']"));
+            .located(By.xpath("//android.widget.TextView[@text='*Celular']/following::android.widget.EditText"));
     public static Target ET_INSERT_USER_ID = Target.the("EditText to insert client's id document")
-            .located(By.xpath("//android.widget.EditText[@resource-id = 'client-new-document']"));
+            .located(By.xpath("//android.widget.TextView[@text='*Número']/following::android.widget.EditText"));
+
+    public static Target CB_TERMS_AND_CONDITIONS = Target.the("CheckBox to agreed terms and conditions")
+        .located(By.xpath("//android.widget.TextView[contains(@text,'marketplace')]/preceding::android.widget.CheckBox"));
+
+    public static Target CB_DATA_TREATMENT = Target.the("CheckBox to agreed data treatment")
+            .located(By.xpath("//android.widget.TextView[contains(@text,'marketplace')]/following::android.widget.CheckBox"));
+
+    public static Target BT_CONTINUE_TO_SHIPPING = Target.the("Button to set package receiver's data")
+            .located(By.xpath("//android.widget.Button[contains(@text, 'Continuar')]"));
+
+
+
+
     public static Target BT_GO_TO_SHIPPING = Target.the("Button to set package receiver's data")
             .located(By.xpath("//android.widget.Button[@resource-id = 'go-to-shipping']"));
     public static Target ET_SHIPPING_RECEIPT = Target.the("EditText to insert package receiver's name")
@@ -33,8 +46,6 @@ public class CheckOutUI {
     public static Target ET_CLIENT_EMAIL = Target.the("EditText with the client's email")
             .located(By.xpath("//android.widget.EditText[@resource-id = 'client-email']")
             );
-
-
 
 
     public static Target GV_TOTAL = Target.the("GridView containing shipping cost and total sale")

@@ -3,15 +3,14 @@ package co.com.sofka.certification.tasks;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 import static co.com.sofka.certification.Interactions.HideKeyboardInteraction.hideKeyboard;
 import static co.com.sofka.certification.tasks.EnterUserDataTask.enter;
-import static co.com.sofka.certification.tasks.ScrollFromAreaTask.scrollFromArea;
-import static co.com.sofka.certification.tasks.ScrollToCheckTotalPriceTask.scrollToCheckTotalPrice;
+import static co.com.sofka.certification.tasks.PressTheKeyTask.press;
 import static co.com.sofka.certification.tasks.ScrollToElementTask.scrollToElement;
 import static co.com.sofka.certification.userinterfaces.CheckOutUI.BT_CONTINUE_TO_INSERT_USER_DATA;
-import static co.com.sofka.certification.userinterfaces.CheckOutUI.BT_DO_CHECKOUT;
+import static co.com.sofka.certification.userinterfaces.CheckOutUI.BT_CONTINUE_TO_SHIPPING;
 import static co.com.sofka.certification.userinterfaces.CheckOutUI.BT_GO_TO_PAYMENT;
-import static co.com.sofka.certification.userinterfaces.CheckOutUI.BT_GO_TO_SHIPPING;
 import static co.com.sofka.certification.userinterfaces.CheckOutUI.BT_PROCESS_PAYMENT;
-import static co.com.sofka.certification.userinterfaces.CheckOutUI.ET_CLIENT_EMAIL;
+import static co.com.sofka.certification.userinterfaces.CheckOutUI.CB_DATA_TREATMENT;
+import static co.com.sofka.certification.userinterfaces.CheckOutUI.CB_TERMS_AND_CONDITIONS;
 import static co.com.sofka.certification.userinterfaces.CheckOutUI.ET_INSERT_USER_EMAIL;
 import static co.com.sofka.certification.userinterfaces.CheckOutUI.ET_SHIPPING_RECEIPT;
 
@@ -25,6 +24,8 @@ import net.serenitybdd.screenplay.waits.WaitUntil;
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
+
+import io.appium.java_client.android.nativekey.AndroidKey;
 
 public class DoCheckoutTask implements Task {
     private Map<String, String> userData;
@@ -43,12 +44,13 @@ public class DoCheckoutTask implements Task {
         String receiverName = userData.get("firstName").concat(" " + userData.get("lastName"));
 
         actor.attemptsTo(
-                WaitUntil.the(ET_INSERT_USER_EMAIL, isVisible()).forNoMoreThan(Duration.ofSeconds(20)),
+                WaitUntil.the(ET_INSERT_USER_EMAIL, isVisible()).forNoMoreThan(Duration.ofSeconds(40)),
                 Click.on(ET_INSERT_USER_EMAIL),
                 Enter.theValue(userData.get("eMail")).into(ET_INSERT_USER_EMAIL),
-                hideKeyboard(),
+                press().theKey(AndroidKey.ENTER),
                 Click.on(BT_CONTINUE_TO_INSERT_USER_DATA)
                 );
+
         actor.attemptsTo(
                 scrollToElement()
                         .lookingFor(BT_PROCESS_PAYMENT)
@@ -60,20 +62,19 @@ public class DoCheckoutTask implements Task {
         );
 
         actor.attemptsTo(
-                enter().theUserData(userData)
-                /*Click.on(BT_GO_TO_SHIPPING),
+                enter().theUserData(userData),
                 scrollToElement()
-                        .lookingFor(ET_SHIPPING_RECEIPT)
+                        .lookingFor(BT_CONTINUE_TO_SHIPPING)
                         .withScrollArea(scrollArea)
-                        .inDirection("down")
+                        .inDirection("up")
                         .andSpeed(10000.0)
                         .andPercent(0.5),
+                Click.on(BT_CONTINUE_TO_SHIPPING)
+        );
 
+        actor.attemptsTo(
                 Enter.theValue(receiverName).into(ET_SHIPPING_RECEIPT),
-                hideKeyboard(),
-                Click.on(BT_GO_TO_PAYMENT),
-                scrollToCheckTotalPrice().withScrollArea(scrollArea)
-                */
+                Click.on(BT_GO_TO_PAYMENT)
         );
     }
 
